@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-<textarea id="input" rows="6" cols="80">
-<h3>Installation</h3>
-</textarea>
-
-<br><br>
-<!-- <button onclick="run()">Run Bookmarklet Logic</button> -->
-<button onclick="runHarness()">Run Bookmarklet Logic</button>
-
-<h4>Clipboard Preview</h4>
-<pre id="clipboardOutput" style="border:1px solid #ccc; padding:8px;"></pre>
-
-<script>
-  function run() {
+// bml => bookmarklet
+// Paste below code excluding these comment lines into URL field of Chrome bookmark
+javascript:(function(){
     const sel = window.getSelection().toString().trim();
     if (!sel) {
       alert("Select the <h3> HTML or heading text first.");
@@ -64,21 +50,4 @@
       console.log("Anchor <h3> HTML copied to clipboard.");
       // alert("Anchor <h3> HTML copied to clipboard.");
     });
-  }
-
-  function runHarness() {
-    run(); // production bookmarklet logic
-
-    // Observe clipboard after a short tick
-    setTimeout(() => {
-      // If alert is used in run(), below code gets:
-      // NotAllowedError: Failed to execute 'readText' on 'Clipboard': Document is not focused.
-      navigator.clipboard.readText().then(text => {
-        document.getElementById("clipboardOutput").textContent = text;
-      });
-    }, 50);
-  }
-</script>
-
-</body>
-</html>
+})();
