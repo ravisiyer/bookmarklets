@@ -60,3 +60,9 @@ javascript:(function(){ /* logic */ })();
 - Chrome bookmarks are for deployment only.
 - Source code lives in this repository.
 - The test harness is the preferred development environment.
+
+---
+
+## License
+
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
