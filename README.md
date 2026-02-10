@@ -47,7 +47,7 @@ This repository uses a small Node.js utility to reliably convert working JavaScr
 5. Create a new Chrome bookmark.
 6. Copy the contents of the generated .bml.txt file and paste it into the URL field of a Chrome bookmark.
 
-### Notes
+### Conversion Utility Notes
   - The utility handles minification and safe encoding required for bookmarklets.
   - Manual copy-paste errors and browser auto-encoding issues are avoided by using the script.
   - sample-run.js is an example input file for the utility, and sample-run.js.bml.txt is the resulting bookmarklet output.
@@ -56,10 +56,18 @@ This repository uses a small Node.js utility to reliably convert working JavaScr
 
 ## Using the Bookmarklet
 
-1. Select the section header you want to use the bookmarklet on.
-    - If the header already has h3 tags then select the whole header from the start of the h3 tag to the end of the closing h3 tag.
-    - If the header does not have h3 tags then select the whole header text. The bookmarklet will add h3 tags around the header text.
+1. Read the README of the particular bookmarklet for any specific instructions and to know its functionality.
 2. Click the bookmark to run it on the current page.
+
+---
+
+## Repository Structure
+
+- **dev-bench/** – Contains in-progress bookmarklets and development/test harnesses.  
+  Use this folder to develop and debug bookmarklets.
+
+- **stable-bml/** – Contains production-ready, tested bookmarklets. bml stands for bookmarklet.
+  Each bookmarklet has its own folder with the minified `.bml.txt` bookmarklet file, the multiline source code, test harness, and a dedicated `README.md` explaining usage.
 
 ---
 
