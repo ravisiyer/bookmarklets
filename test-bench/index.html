@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<textarea id="input" rows="6" cols="80">
+<h3>Installation</h3>
+</textarea>
+
+<br><br>
+<button onclick="run()">Run Bookmarklet Logic</button>
+
+<script>
+function run() {
+  const sel = window.getSelection().toString().trim();
+  alert("Selected:\n" + sel);
+}
+</script>
+
+</body>
+</html>

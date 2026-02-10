@@ -1,0 +1,6 @@
+// bml => bookmarklet
+// Paste below code excluding these comment lines into URL field of Chrome bookmark
+javascript:(function(){
+  const sel = window.getSelection().toString().trim();
+  alert("Selected:\n" + sel);
+})();
