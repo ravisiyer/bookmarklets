@@ -1,53 +1,6 @@
 // bml => bookmarklet
+// Below single line code is provided by ChatGPT for working function in test harness HTML.
+// Multi line copy paste of that function into Chrome bookmarklet gave some encoding issues and
+// IFIRC, unexpected end of code error.
 // Paste below code excluding these comment lines into URL field of Chrome bookmark
-javascript:(function(){
-    const sel = window.getSelection().toString().trim();
-    if (!sel) {
-      alert("Select the <h3> HTML or heading text first.");
-      return;
-    }
-
-    const slugify = (text) =>
-      text
-        .toLowerCase()
-        .replace(/&/g, "and")
-        .replace(/[^a-z0-9\s-]/g, "")
-        .replace(/\s+/g, "-")
-        .replace(/-+/g, "-")
-        .replace(/^-|-$/g, "");
-
-    let text = "";
-    let id = "";
-
-    // Case 1: full <h3>...</h3> selected
-    if (/^<h3\b[\s\S]*<\/h3>$/.test(sel)) {
-      const idMatch = sel.match(/id\s*=\s*["']([^"']+)["']/i);
-      const textMatch = sel.match(/<h3\b[^>]*>([\s\S]*?)<\/h3>/i);
-
-      if (!textMatch) {
-        alert("Could not extract heading text.");
-        return;
-      }
-
-      text = textMatch[1]
-        .replace(/<a\b[^>]*>.*?<\/a>/gi, "")
-        .replace(/#$/, "")
-        .trim();
-
-      id = idMatch ? idMatch[1] : slugify(text);
-    } else {
-      // Case 2: plain text selected
-      text = sel;
-      id = slugify(text);
-    }
-
-    const html =
-  `<h3 id="${id}">
-    ${text} <a href="#${id}">#</a>
-  </h3>`;
-
-    navigator.clipboard.writeText(html).then(() => {
-      console.log("Anchor <h3> HTML copied to clipboard.");
-      // alert("Anchor <h3> HTML copied to clipboard.");
-    });
-})();
+javascript:(function(){const sel=window.getSelection().toString().trim();if(!sel){alert("Select the <h3> HTML or heading text first.");return;}const slugify=t=>t.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"");let text="",id="";if(/^<h3\b[\s\S]*<\/h3>$/.test(sel)){const idMatch=sel.match(/id\s*=\s*["']([^"']+)["']/i);const textMatch=sel.match(/<h3\b[^>]*>([\s\S]*?)<\/h3>/i);if(!textMatch){alert("Could not extract heading text.");return;}text=textMatch[1].replace(/<a\b[^>]*>.*?<\/a>/gi,"").replace(/#$/,"").trim();id=idMatch?idMatch[1]:slugify(text);}else{text=sel;id=slugify(text);}const html=`<h3 id="${id}">\n  ${text} <a href="#${id}">#</a>\n</h3>`;navigator.clipboard.writeText(html).then(()=>{console.log("Anchor <h3> HTML copied to clipboard.");});})();
