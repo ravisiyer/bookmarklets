@@ -1,54 +1,3 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-<div id="input">
-  <h3>Installation Guide</h3>
-
-  <p>
-    Please read the 
-    <a href="https://example.com/docs">official documentation</a> 
-    before proceeding.
-  </p>
-
-  <p>
-    Visit our website at 
-    <a href="https://example.com">https://example.com</a> 
-    for more details.
-  </p>
-
-  <p>
-    You can also check the 
-    <a href="https://github.com/example/project">GitHub repository</a>.
-  </p>
-
-  <ol>
-    <li>
-      Download the installer from 
-      <a href="https://example.com/download">this page</a>.
-    </li>
-    <li>
-      Follow the setup instructions carefully.
-    </li>
-    <li>
-      Contact 
-      <a href="mailto:support@example.com">support@example.com</a> 
-      if needed.
-    </li>
-  </ol>
-
-  <p>
-    This paragraph contains <b>bold text</b>, 
-    <i>italic text</i>, and a 
-    <a href="https://example.com/faq">FAQ link</a>.
-  </p>
-</div>
-
-<br><br>
-<button onclick="run()">Run Bookmarklet Logic</button>
-
-<script>
-
 function run() {
   const sel = window.getSelection();
   if (!sel.rangeCount || sel.isCollapsed)
@@ -110,12 +59,8 @@ function run() {
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 
-  console.log('Final Output:\n' + output);
+  // console.log('Final Output:\n' + output);
   navigator.clipboard.writeText(output)
     .then(() => console.log('Selection text with URLs copied!'))
     .catch(err => alert('Copy failed: ' + err));
 }
-</script>
-
-</body>
-</html>

@@ -6,7 +6,7 @@ The **copyashtml** bookmarklet copies selected content in Chrome browser as HTML
 
 ## How to Use
 
-1. Go to any webpage.
+1. In Chrome browser, go to any webpage.
 2. Select the text you want to copy (even if it spans multiple elements).
 3. Click your **Copy Selection HTML** bookmark.
 4. Browser console will have a message: `Selection HTML copied!`
