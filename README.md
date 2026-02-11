@@ -79,6 +79,12 @@ This repository uses a small Node.js utility to reliably convert working JavaScr
 
 ---
 
+## Author
+
+Ravi S. Iyer with assistance from ChatGPT.
+
+---
+
 ## License
 
 This project is licensed under the **MIT License**. See the `LICENSE` file for details.

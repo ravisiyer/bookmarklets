@@ -89,3 +89,9 @@ Installation
 - Blogger or static-site authors
 - Long technical or tutorial posts
 - Manual control over anchor IDs without installing plugins or scripts
+
+---
+
+## Author
+
+Ravi S. Iyer with assistance from ChatGPT.

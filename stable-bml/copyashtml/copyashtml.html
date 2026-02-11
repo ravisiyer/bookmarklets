@@ -1,0 +1,41 @@
+<!-- Ref: Copying selected content in Chrome browser as HTML, using Bookmarklet, https://raviswdev.blogspot.com/2025/09/copying-selected-content-in-chrome.html
+
+11 Feb 2026: Now I am only making a slight modification to the bookmarklet described in above blog post.
+-->
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="input">
+  <h3>Installation</h3>
+  <p> This is a test paragraph.</p>
+  <ol>
+    <li>First item</li>
+    <li>Second item</li>
+    <li>Third item</li> 
+  </ol>
+</div>
+
+<br><br>
+<button onclick="run()">Run Bookmarklet Logic</button>
+
+<script>
+  function run() {
+    const sel = window.getSelection();
+    if (!sel.rangeCount || sel.isCollapsed)
+      return alert('No selection!');
+    const range = sel.getRangeAt(0);
+    const container = document.createElement('div');
+    container.appendChild(range.cloneContents());
+    const html = container.innerHTML;
+    if (!html) return alert('Selection has no innerHTML!');
+    navigator.clipboard.writeText(html)
+      // .then(()=>alert('Selection HTML copied!'))
+      // .then(()=>console.log('Selection HTML copied!', html))
+      .then(()=>console.log('Selection HTML copied!'))
+      .catch(err=>alert('Copy failed: '+err));
+  }
+</script>
+
+</body>
+</html>
