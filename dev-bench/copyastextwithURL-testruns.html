@@ -1,0 +1,240 @@
+<!-- This file has many test function variations with outputs for same input given in the file itself as comments. -->
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="input">
+  <h3>Installation Guide</h3>
+
+  <p>
+    Please read the 
+    <a href="https://example.com/docs">official documentation</a> 
+    before proceeding.
+  </p>
+
+  <p>
+    Visit our website at 
+    <a href="https://example.com">https://example.com</a> 
+    for more details.
+  </p>
+
+  <p>
+    You can also check the 
+    <a href="https://github.com/example/project">GitHub repository</a>.
+  </p>
+
+  <ol>
+    <li>
+      Download the installer from 
+      <a href="https://example.com/download">this page</a>.
+    </li>
+    <li>
+      Follow the setup instructions carefully.
+    </li>
+    <li>
+      Contact 
+      <a href="mailto:support@example.com">support@example.com</a> 
+      if needed.
+    </li>
+  </ol>
+
+  <p>
+    This paragraph contains <b>bold text</b>, 
+    <i>italic text</i>, and a 
+    <a href="https://example.com/faq">FAQ link</a>.
+  </p>
+</div>
+
+<br><br>
+<button onclick="run()">Run Bookmarklet Logic</button><br/><br/>
+<button onclick="getRenderedSelectionText()">Run getRenderedSelectionText()</button><br/><br/>
+<button onclick="getCleanRenderedText()">Run getCleanRenderedText()</button><br/><br/>
+<button onclick="getExactRenderedText()">Run getExactRenderedText()</button><br/><br/>
+<button onclick="getExactRenderedSelection()">Run getExactRenderedSelection()</button><br/><br/>
+
+<script>
+
+// Test input HTML from above:
+  // <h3>Installation Guide</h3>
+
+  // <p>
+  //   Please read the 
+  //   <a href="https://example.com/docs">official documentation</a> 
+  //   before proceeding.
+  // </p>
+
+function run() {
+  const sel = window.getSelection();
+  if (!sel.rangeCount || sel.isCollapsed)
+    return alert('No selection!');
+
+  const range = sel.getRangeAt(0);
+  const renderedText = range.toString();
+  console.log('Rendered text:', renderedText);
+  // Output:
+  // Rendered text: Installation Guide
+
+  
+  //   Please read the 
+  //   official documentation 
+  //   before proceeding.
+  const container = document.createElement('div');
+  container.appendChild(range.cloneContents());
+
+  const anchors = [...container.querySelectorAll('a')];
+
+  let output = renderedText;
+  let offset = 0;
+
+  anchors.forEach(a => {
+    const text = a.textContent.trim();
+    let href = a.getAttribute('href') || '';
+
+    if (href.startsWith('mailto:')) {
+      href = href.replace(/^mailto:/, '');
+    }
+
+    if (!href || text === href) return;
+
+    const replacement = `${text}, ${href}`;
+
+    const index = output.indexOf(text, offset);
+    if (index !== -1) {
+      output =
+        output.slice(0, index) +
+        replacement +
+        output.slice(index + text.length);
+
+      offset = index + replacement.length;
+    }
+  });
+
+  navigator.clipboard.writeText(output)
+    // .then(() => console.log('Selection text with URLs copied!'))
+    .then(() => console.log('run() output:', output))
+    .catch(err => alert('Copy failed: ' + err));
+  // Output:
+// run() output: Installation Guide
+
+  
+//     Please read the 
+//     official documentation, https://example.com/docs 
+//     before proceeding.
+}
+
+function getRenderedSelectionText() {
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return "";
+
+    // 1. Clone the selected range
+    const range = selection.getRangeAt(0);
+    const clone = range.cloneContents();
+
+    // 2. Create a temporary hidden container
+    const div = document.createElement("div");
+    div.appendChild(clone);
+
+    // 3. Use innerText to get the 'rendered' representation
+    const renderedText = div.innerText;
+    
+    console.log('Rendered text:', renderedText);
+    // Output:
+    // Rendered text: Installation Guide
+
+  
+    // Please read the 
+    // official documentation 
+    // before proceeding.
+    // return renderedText;
+}
+
+function getCleanRenderedText() {
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return "";
+
+    // 1. Get the raw text from the selection
+    const rawText = selection.toString();
+
+    // 2. Normalize whitespace:
+    // \s matches any whitespace (space, tab, newline)
+    // + matches one or more
+    // ' ' replaces the sequence with a single space
+    const normalized = rawText.replace(/\s+/g, ' ').trim();
+
+    console.log('Clean rendered text:', normalized);
+    // Output:
+    // Clean rendered text: Installation Guide Please read the official documentation before proceeding.  
+    // return normalized;
+}
+
+function getExactRenderedText() {
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return "";
+
+    const range = selection.getRangeAt(0);
+    const div = document.createElement("div");
+    div.appendChild(range.cloneContents());
+
+    // 1. Get the text
+    let text = div.innerText;
+
+    // 2. Replace tabs and multiple horizontal spaces with one space
+    text = text.replace(/[ \t]+/g, ' ');
+
+    // 3. Remove "soft" newlines (newlines that have spaces around them 
+    // often come from source indentation)
+    text = text.replace(/\s*\n\s*/g, '\n');
+
+    // 4. Final trim for the ends
+    console.log('Exact rendered text:', text);
+    // Output:
+//     Exact rendered text: Installation Guide
+// Please read the
+// official documentation
+// before proceeding.
+    // return text.trim();
+}
+
+function getExactRenderedSelection() {
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return "";
+
+    // 1. Extract selection into a temporary div
+    const range = selection.getRangeAt(0);
+    const container = document.createElement("div");
+    container.appendChild(range.cloneContents());
+
+    // 2. Force the browser to treat internal whitespace like it does in a UI
+    // 'pre-line' collapses extra spaces but preserves actual newlines
+    container.style.whiteSpace = "pre-line";
+    
+    // 3. Append to body temporarily to let the browser calculate layout
+    container.style.position = "fixed";
+    container.style.left = "-9999px";
+    document.body.appendChild(container);
+
+    // 4. Use innerText now that it has layout context
+    let text = container.innerText;
+
+    // 5. Cleanup: Replace the "source code" gaps with single spaces
+    // This fixes the gap between [word] [link] [word]
+    text = text.replace(/[ \t]+/g, ' '); 
+    
+    // Cleanup: Remove excessive blank lines (keep only one)
+    text = text.replace(/\n\s*\n/g, '\n\n');
+
+    document.body.removeChild(container);
+    console.log("Exact rendered selection:" , text.trim());
+    // Output:
+//     Exact rendered selection: Installation Guide
+
+// Please read the
+// official documentation
+// before proceeding.
+    // return text.trim();
+}
+
+</script>
+
+</body>
+</html>
