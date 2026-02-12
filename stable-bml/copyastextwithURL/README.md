@@ -19,20 +19,18 @@ The **copyastextwithURL** bookmarklet copies the user’s selection to the Clipb
 ### Original Webpage content:
 
 #### As rendered on webpage:
-Next I wanted to generate a TOC for the anchor linked sections created above. For that I used my [auto-header-ids-toc VSCode extension](https://raviswdev.blogspot.com/2025/09/vscode-extension-to-auto-add-id.html). I had to add h3 to the extension's settings: auto-header-ids-toc.headersToProcess.
+> Next I wanted to generate a TOC for the anchor linked sections created above. For that I used my [auto-header-ids-toc VSCode extension](https://raviswdev.blogspot.com/2025/09/vscode-extension-to-auto-add-id.html). I had to add h3 to the extension's settings: auto-header-ids-toc.headersToProcess.
 
 #### Corresponding HTML
-```html
-Next I wanted to generate a TOC for the anchor linked sections created above. For that I used my <a href="https://raviswdev.blogspot.com/2025/09/vscode-extension-to-auto-add-id.html">auto-header-ids-toc VSCode extension</a>. I had to add h3 to the extension's settings: auto-header-ids-toc.headersToProcess.
-```
+
+> Next I wanted to generate a TOC for the anchor linked sections created above. For that I used my &lt;a href="https://raviswdev.blogspot.com/2025/09/vscode-extension-to-auto-add-id.html"&gt;auto-header-ids-toc VSCode extension&lt;/a&gt;. I had to add h3 to the extension's settings: auto-header-ids-toc.headersToProcess.
+
 
 Note that the content as rendered on the webpage shows "auto-header-ids-toc VSCode extension" as a clickable link which takes the user to the associated URL, but without the URL being printed in the content on the webpage. On hovering the mouse over the link, the URL would be shown in the browser's status bar but the status bar cannot be included in the selection of content from the webpage that is to be copied.
 
 ### After using the bookmarklet and pasting:
 
-```
-Next I wanted to generate a TOC for the anchor linked sections created above. For that I used my auto-header-ids-toc VSCode extension, https://raviswdev.blogspot.com/2025/09/vscode-extension-to-auto-add-id.html. I had to add h3 to the extension's settings: auto-header-ids-toc.headersToProcess.
-```  
+> Next I wanted to generate a TOC for the anchor linked sections created above. For that I used my auto-header-ids-toc VSCode extension, https://raviswdev.blogspot.com/2025/09/vscode-extension-to-auto-add-id.html. I had to add h3 to the extension's settings: auto-header-ids-toc.headersToProcess.
 
 ---
 
