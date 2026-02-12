@@ -91,7 +91,9 @@ This repository uses a small Node.js utility to reliably convert working JavaScr
 
 ## Author
 
-Ravi S. Iyer with assistance from ChatGPT.
+Ravi S. Iyer with assistance from ChatGPT.  
+
+Associated blog post: [Chrome Bookmarklet development harness; Stable Bookmarklets: h3anchor, copyashtml, copyastextwithURL](https://raviswdev.blogspot.com/2026/02/chrome-bookmarklet-development-and.html)
 
 ---
 
