@@ -1,7 +1,10 @@
-# Chrome Bookmarklet Development and Testing Harness
+# Chrome Bookmarklet Development & Testing Harness and Stable Bookmarklets Repository
 
 This repository is used to develop, test, and version-control Chrome bookmarklets
-using a local HTML test harness and VSCode.
+using a local HTML test harness and VSCode. It contains both in-progress bookmarklets and stable, production-ready bookmarklets.
+
+**Quick Link:**
+- [**Bookmarklets**](#bookmarklets) – View the list of production-ready bookmarklets with descriptions.
 
 ---
 
@@ -38,19 +41,21 @@ This repository uses a small Node.js utility to reliably convert working JavaScr
 2. Save only the `run()` function code (no HTML, no harness code) into a `.js` file.
 3. Run the conversion utility:
 
-      ```bash
-      node make-bookmarklet.js <input-file.js>
-      ```
+   ```bash
+   node make-bookmarklet.js <input-file.js>
+   ```
 4. The script generates a new file with the suffix .bml.txt.
-    - This file contains a single-line, bookmarklet-ready URL starting with javascript:.
-    - The script aborts if the output file already exists.
+
+   - This file contains a single-line, bookmarklet-ready URL starting with javascript:.
+   - The script aborts if the output file already exists.
 5. Create a new Chrome bookmark.
 6. Copy the contents of the generated .bml.txt file and paste it into the URL field of a Chrome bookmark.
 
 ### Conversion Utility Notes
-  - The utility handles minification and safe encoding required for bookmarklets.
-  - Manual copy-paste errors and browser auto-encoding issues are avoided by using the script.
-  - sample-run.js is an example input file for the utility, and sample-run.js.bml.txt is the resulting bookmarklet output.
+
+- The utility handles minification and safe encoding required for bookmarklets.
+- Manual copy-paste errors and browser auto-encoding issues are avoided by using the script.
+- sample-run.js is an example input file for the utility, and sample-run.js.bml.txt is the resulting bookmarklet output.
 
 ---
 
@@ -63,11 +68,16 @@ This repository uses a small Node.js utility to reliably convert working JavaScr
 
 ## Repository Structure
 
-- **dev-bench/** – Contains in-progress bookmarklets and development/test harnesses.  
+- **dev-bench/** – Contains in-progress bookmarklets and development/test harnesses.
   Use this folder to develop and debug bookmarklets.
-
 - **stable-bml/** – Contains production-ready, tested bookmarklets. bml stands for bookmarklet.
-  Each bookmarklet has its own folder with the minified `.bml.txt` bookmarklet file, the multiline source code, test harness, and a dedicated `README.md` explaining usage.
+  Each bookmarklet usually has its own folder with the minified `.bml.txt` bookmarklet file, the multiline source code, test harness, and a dedicated `README.md` explaining usage.
+
+## Bookmarklets
+
+  1. [**h3anchor/**](stable-bml/h3anchor/) – adds an anchor link (`#`) to an `<h3>` section header and ensures the header has a stable `id` attribute.
+  2. [**copyashtml/**](stable-bml/copyashtml/) – copies selected content in Chrome browser as HTML into the clipboard.
+  3. [**copyastextwithURL/**](stable-bml/copyastextwithURL/) – copies the user's selection to the Clipboard as rendered plain text, but expands hyperlinks within selection into link text, URL.
 
 ---
 

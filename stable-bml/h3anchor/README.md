@@ -32,6 +32,8 @@ The generated anchor `id`:
 
 4. Paste the clipboard contents back into your document (for example, in Blogger’s *Edit HTML* mode).
 
+Note: Using h3anchor along with Auto-header-ids-toc VSCode extension for Table of Contents generation is covered in [my blog post](https://raviswdev.blogspot.com/2026/02/chrome-bookmarklet-development-and.html#using-h3anchor).
+
 ---
 
 ## Examples
